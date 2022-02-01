@@ -13,6 +13,9 @@ public class Contact implements Comparable<Contact>{
             this.name = name;
         }
     }
+    public String toCSV () {
+        return name + ";" + phoneNumber;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;

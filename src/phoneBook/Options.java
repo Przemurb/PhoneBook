@@ -7,6 +7,7 @@ public enum Options {
     SEARCH_BY_NAME(2, "Wyszukaj po nazwie"),
     SEARCH_BY_NUMBER(3, "Wyszukaj po numerze"),
     REMOVE(4, "Usuń kontakt"),
+    ALL(5, "Wyświetl wszystkie kontakty"),
     EXIT(0, "Wyjście z programu");
 
     private final int id;
@@ -17,22 +18,23 @@ public enum Options {
         this.description = description;
     }
 
-    public static Options setFromNumber(int number) {
-//        Options[] options = Options.values();
-//        if (number > options.length || number < 1) {
-        if(number > values().length || number < 1) {
+    public static Options setOptionFromNumber(int number) {
+        Options[] options = Options.values();
+        Options option = null;
+        if (number > options.length - 1 || number < 0) {
+//        if (number > values().length - 1 || number < 0) {
             throw new NoSuchElementException();
         }
-//        for (Options option : options) {
-//            if (option.id == number) {
-//                return option;
-//            }
-        return values()[number];
+        for (Options opt : options) {
+            if (opt.id == number) {
+                option = opt;
+            }
+        }
+        return option;
     }
 
-
     public static String printMenu() {
-        StringBuilder stringBuilder = new StringBuilder("OPCJE PROGRAMU:");
+        StringBuilder stringBuilder = new StringBuilder("OPCJE PROGRAMU:\n");
         Options[] options = Options.values();
         for (Options option : options) {
             stringBuilder.append(option).append("\n");

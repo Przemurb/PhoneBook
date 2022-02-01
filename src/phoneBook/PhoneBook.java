@@ -1,11 +1,12 @@
 package phoneBook;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class PhoneBook {
+public class PhoneBook implements Iterable<Contact> {
     private Map<String, Contact> phoneBook = new HashMap<>();
 
     public PhoneBook() {
@@ -45,5 +46,10 @@ public class PhoneBook {
         return phoneBook.values().stream()
                 .filter(contact -> contact.getPhoneNumber().contains(number))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Iterator<Contact> iterator() {
+        return phoneBook.values().iterator();
     }
 }
